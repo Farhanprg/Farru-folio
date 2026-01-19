@@ -1,0 +1,69 @@
+@import "tailwindcss";
+
+:root {
+  --background: #0a0a0a;
+  --foreground: #ffffff;
+  --accent: #ccff00;
+}
+
+@font-face {
+  font-family: "Brier";
+  src: url("/fonts/Brier-Bold.woff2") format("woff2");
+  font-weight: bold;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Mona Sans";
+  src: url("/fonts/MonaSans-Variable.woff2") format("woff2");
+  font-weight: 200 900;
+  font-display: swap;
+}
+
+@theme {
+  --font-brier: "Brier", serif;
+  --font-mona: "Mona Sans", sans-serif;
+  --font-arabic: var(--font-noto-arabic), sans-serif;
+}
+
+@layer base {
+  body {
+    @apply bg-[family-name:var(--background)] text-[family-name:var(--foreground)];
+    background-color: var(--background);
+    color: var(--foreground);
+    font-family: "Mona Sans", sans-serif;
+    overflow-x: hidden;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    @apply uppercase tracking-tight font-bold;
+  }
+}
+
+.font-brier {
+  font-family: "Brier", serif;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: #0a0a0a;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #222;
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #333;
+}
