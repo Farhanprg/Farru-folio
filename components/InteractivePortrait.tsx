@@ -6,7 +6,7 @@ import * as THREE from "three"
 export default function InteractivePortrait() {
     const containerRef = useRef<HTMLDivElement>(null)
     const rendererRef = useRef<THREE.WebGLRenderer | null>(null)
-    const animationFrameRef = useRef<number>()
+    const animationFrameRef = useRef<number>(0)
 
     useEffect(() => {
         if (!containerRef.current) return
