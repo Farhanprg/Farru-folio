@@ -1,6 +1,7 @@
 import Preloader from "@/components/Preloader";
 import HeroSection from "@/components/HeroSection";
-import StickyGallery from "@/components/StickyGallery";
+import WorkSection from "@/components/WorkSection";
+import TextReveal from "@/components/TextReveal";
 
 export default function Home() {
   return (
@@ -10,10 +11,15 @@ export default function Home() {
       {/* Cinematic Intro (With Marquee Background) */}
       <HeroSection />
 
-      {/* Content Starts Here - Slides OVER the Hero ghost */}
-      <div className="relative z-20 bg-[#0a0a0a] -mt-[20vh]">
-        <StickyGallery />
-      </div>
+      {/* Spacer - Visual breathing room (reduced to 80vh) */}
+      <div className="relative z-20 h-[80vh] bg-[#0a0a0a]" />
+
+      {/* Text Image Reveal Effect - Exact Port from reference */}
+      <TextReveal />
+
+      {/* WORK Section - Phase 1: Static Foundation */}
+      <WorkSection />
+
     </main>
   );
 }

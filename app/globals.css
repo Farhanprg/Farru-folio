@@ -4,6 +4,11 @@
   --background: #0a0a0a;
   --foreground: #ffffff;
   --accent: #ccff00;
+
+  /* Tailwind 4 auto-discovers these --font-* variables as utilities */
+  --font-brier: "Brier", serif;
+  --font-mona: "Mona Sans", sans-serif;
+  --font-arabic: var(--font-noto-arabic), sans-serif;
 }
 
 @font-face {
@@ -21,18 +26,13 @@
   font-display: swap;
 }
 
-@theme {
-  --font-brier: "Brier", serif;
-  --font-mona: "Mona Sans", sans-serif;
-  --font-arabic: var(--font-noto-arabic), sans-serif;
-}
-
 @layer base {
   body {
-    @apply bg-[family-name:var(--background)] text-[family-name:var(--foreground)];
     background-color: var(--background);
     color: var(--foreground);
-    font-family: "Mona Sans", sans-serif;
+    font-family: var(--font-mona);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
     overflow-x: hidden;
   }
 
@@ -42,12 +42,14 @@
   h4,
   h5,
   h6 {
-    @apply uppercase tracking-tight font-bold;
+    text-transform: uppercase;
+    letter-spacing: -0.025em;
+    font-weight: 700;
   }
 }
 
 .font-brier {
-  font-family: "Brier", serif;
+  font-family: var(--font-brier);
 }
 
 /* Custom Scrollbar */

@@ -1,0 +1,210 @@
+/* Work Section Styles - from land-portfolio/SWork.astro */
+
+.s-work {
+    --height: 400vh;
+    --scroll-progress: 0;
+    position: relative;
+    z-index: 2;
+    height: var(--height);
+    background: #C8B8A0;
+}
+
+.s-work::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 2;
+    width: 100%;
+    height: 1px;
+    background: #1a1a1a;
+}
+
+.s__outer {
+    position: relative;
+    height: var(--height);
+    clip-path: inset(0 -1rem);
+}
+
+.s__inner {
+    position: fixed;
+    top: 0;
+    left: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    background: #1a1a1a;
+    color: #C8B8A0;
+    clip-path: inset(0 1rem);
+    will-change: clip-path, transform;
+}
+
+.s__mask-outer {
+    position: sticky;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    overflow: hidden;
+    pointer-events: none;
+}
+
+.s__mask {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    will-change: scale, transform;
+}
+
+.s__ruler {
+    --width: min(16.6667%, 19.625rem);
+    position: absolute;
+    top: 10vh;
+    left: calc(50% - var(--width) / 2);
+    width: var(--width);
+    height: 80vh;
+    pointer-events: none;
+}
+
+.s__title {
+    width: 0.7em;
+    opacity: 0;
+    word-break: break-all;
+    font: 700 min(18.75rem, 25vh) / 1 var(--font-brier), serif;
+    text-align: center;
+    text-transform: uppercase;
+}
+
+.s__title__inner {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    line-height: 0.85;
+    margin: 0.075em 0 -0.125em;
+}
+
+.s__scene {
+    --state: 0;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 2;
+    width: 100%;
+    height: 100%;
+    perspective: 40rem;
+    font: 700 min(18.75rem, 25vh) / 1 var(--font-brier), serif;
+    text-align: center;
+    text-transform: uppercase;
+    will-change: transform;
+}
+
+.s__scene__letter {
+    --head: calc((var(--progress, 0.5) - 0.5) * -2);
+    --ahead: calc(var(--head) * var(--head));
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: block;
+    line-height: 0.85;
+    color: #C8B8A0;
+    transform: rotateY(calc(var(--head) * -10deg * var(--state))) translate3d(calc(var(--head) * 50vw * var(--state)),
+            calc(var(--iy, 0) * 50% * var(--ahead) * var(--state)),
+            0);
+    pointer-events: none;
+    will-change: transform;
+}
+
+.s__scene__letter::before {
+    content: attr(data-letter);
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: -1;
+    color: rgba(50, 40, 30, 0.8);
+    opacity: min(calc(var(--state) * 2), 1);
+    transform: scale(1.05, 1.02) translate3d(calc(var(--head) * 0.1rem * var(--state) * var(--state)),
+            0,
+            0);
+    transform-origin: calc(50% - var(--head) * 50%) -50%;
+    will-change: opacity, transform;
+}
+
+.s__scene__work {
+    --progress: 1;
+    --size: 1;
+    --y: 0;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    z-index: 2;
+    transform: rotateY(calc(var(--progress) * -20deg)) translate3d(calc(var(--progress) * (50vw + 100%) - 50%),
+            calc(var(--y) * 50% - 50%),
+            calc(var(--progress) * var(--progress) * -5rem)) scale(var(--size));
+    will-change: transform;
+    transform-style: preserve-3d;
+}
+
+.a__inner {
+    display: block;
+    margin: 0;
+    padding: 0;
+}
+
+.a__link {
+    display: block;
+    text-decoration: none;
+}
+
+.a__video {
+    display: block;
+    width: auto;
+    max-width: 50vw;
+    height: auto;
+    max-height: 50vh;
+    min-width: 350px;
+    min-height: 200px;
+    background: transparent;
+}
+
+@media (max-width: 767px) {
+    .a__video {
+        max-width: 80vw;
+        max-height: 80vh;
+        min-width: 280px;
+        min-height: 160px;
+    }
+}
+
+.a__caption {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.5rem;
+    background: #C8B8A0;
+    color: #1a1a1a;
+    font: 700 11px/1 monospace;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+}
+
+@media (max-width: 767px) {
+    .a__caption {
+        display: none;
+    }
+}
+
+.s__canvas {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1;
+    width: 100%;
+    height: 100%;
+}
