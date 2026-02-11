@@ -206,8 +206,8 @@ export default function WorkSection() {
         const ruler = rulerRef.current
         const canvas = canvasRef.current
 
-        // Set section height
-        section.style.setProperty('--height', works.length * 50 + 'vh')
+        // Set section height to 100vh for pinning container
+        section.style.height = '100vh'
 
         // Set canvas size
         canvas.width = window.innerWidth
@@ -227,18 +227,23 @@ export default function WorkSection() {
         // Get work elements
         const worksEls = workRefs.current.filter(Boolean) as HTMLDivElement[]
 
-        // Create GSAP timeline (exact from reference)
+        // Create GSAP timeline (Pinning Logic Enabled)
         const tl = gsap.timeline({
             scrollTrigger: {
                 trigger: section,
-                start: 'top 25%',
-                end: 'bottom 75%',
+                start: 'top top',    // Pin exactly when top hits viewport top
+                end: `+=${works.length * 100}%`, // Scroll distance proportional to content
                 scrub: 1,
+                pin: true,           // LOCK position
+                pinSpacing: true,    // Push following content down
             },
             onUpdate: () => {
                 tick()
             }
         })
+
+        // Force inner container to fit pinned section
+        gsap.set(container, { position: 'absolute', height: '100%', width: '100%' })
 
         // === ENTRY (position 0) ===
         tl.fromTo(mask, { scale: 1 }, { scale: maxScale, duration: 0.75, ease: 'power4.in' }, 0)
@@ -299,7 +304,7 @@ export default function WorkSection() {
     }, [setupLetters, setupPoints, tick])
 
     return (
-        <section ref={sectionRef} id="work" className="s-work relative z-30 -mt-[15vh] rounded-t-[4rem] overflow-hidden shadow-[0_-20px_50px_rgba(0,0,0,0.5)]">
+        <section ref={sectionRef} id="work" className="s-work">
             <div className="s__outer">
                 {/* Inner Container */}
                 <div ref={containerRef} className="s__inner">
