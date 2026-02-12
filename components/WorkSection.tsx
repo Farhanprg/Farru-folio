@@ -206,8 +206,8 @@ export default function WorkSection() {
         const ruler = rulerRef.current
         const canvas = canvasRef.current
 
-        // Set section height
-        section.style.setProperty('--height', works.length * 50 + 'vh')
+        // Set section height (Increased to 35vh for a more weighted, tight feel)
+        section.style.setProperty('--height', works.length * 35 + 'vh')
 
         // Set canvas size
         canvas.width = window.innerWidth
@@ -233,7 +233,7 @@ export default function WorkSection() {
                 trigger: section,
                 start: 'top 25%',
                 end: 'bottom 75%',
-                scrub: 1,
+                scrub: 0.5, // Tighter reaction time to scroll
             },
             onUpdate: () => {
                 tick()
@@ -246,6 +246,10 @@ export default function WorkSection() {
         tl.fromTo(container, { clipPath: 'inset(0 1rem)' }, { clipPath: 'inset(0 0rem)', duration: 0.75, ease: 'power3.in' }, 0)
         tl.fromTo(animRef.current, { pointsProgress: 0 }, { pointsProgress: 1, duration: 1, ease: 'power4.inOut' }, 0)
         tl.fromTo(animRef.current, { state: 0 }, { state: 1, duration: 0.75, ease: 'power4.in' }, 0)
+
+        // --- Overlay Fades (Start) ---
+        tl.to('.s__overlay-start', { opacity: 0, duration: 0.5, ease: 'power2.inOut' }, 0.2)
+        tl.set('.s__overlay-end', { opacity: 0 }, 0) // Ensure end is hidden at start
 
         // === WORKS (position 0.75) ===
         // Distribute sizes and positions like reference (deterministic pseudo-random)
@@ -280,6 +284,10 @@ export default function WorkSection() {
         tl.fromTo(container, { clipPath: 'inset(0 0rem)' }, { clipPath: 'inset(0 1rem)', duration: 0.75, ease: 'power3.inOut', immediateRender: false }, '-=1')
         tl.fromTo(animRef.current, { pointsProgress: 1 }, { pointsProgress: 0, duration: 1, ease: 'power4.inOut' }, '-=1')
 
+        // --- Overlay Fades (End) ---
+        tl.to('.s__overlay-end', { opacity: 1, duration: 0.5, ease: 'power2.inOut' }, '-=0.5')
+        tl.to('.s__overlay-start', { opacity: 0, immediateRender: false }, '-=1') // Ensure start stays hidden
+
         // Resize handler
         const onResize = () => {
             canvas.width = window.innerWidth
@@ -299,7 +307,16 @@ export default function WorkSection() {
     }, [setupLetters, setupPoints, tick])
 
     return (
-        <section ref={sectionRef} id="work" className="s-work">
+        <section ref={sectionRef} id="work" className="s-work relative">
+            {/* Engineering Wave Transition */}
+            <div className="absolute top-[-99px] left-0 w-full h-[100px] z-[5] pointer-events-none">
+                <svg viewBox="0 0 1440 100" preserveAspectRatio="none" className="w-full h-full translate-y-[2px]">
+                    <path
+                        d="M0 100 C 360 100, 350 0, 720 0 C 1050 0, 1100 100, 1440 100 V 100 H 0 Z"
+                        fill="#C8B8A0"
+                    />
+                </svg>
+            </div>
             <div className="s__outer">
                 {/* Inner Container */}
                 <div ref={containerRef} className="s__inner">
@@ -340,6 +357,53 @@ export default function WorkSection() {
 
                 {/* Ruler */}
                 <div ref={rulerRef} className="s__ruler" />
+            </div>
+
+            {/* HUD Overlays - Moved to Top Level for Visibility */}
+            <div className="absolute inset-0 z-[60] pointer-events-none p-8 md:p-16 flex flex-col justify-between">
+                {/* START PHASE (Technical Blueprint) */}
+                <div className="s__overlay-start flex justify-between items-start uppercase font-mono text-[10px] tracking-[0.2em] text-[#1a1a1a]/40">
+                    <div className="space-y-3">
+                        <div className="flex items-center gap-3">
+                            <span className="w-2 h-2 bg-[#1a1a1a]/20 rounded-full animate-pulse" />
+                            <span>[ PROJECT.ARCHIVE / 01 ]</span>
+                        </div>
+                        <div className="w-20 h-20 border-l border-t border-[#1a1a1a]/10 hidden md:block" /> {/* Illustration Slot (Start) */}
+                    </div>
+                    <div className="text-right flex flex-col items-end gap-2">
+                        <div className="font-bold">PHASE.01 <br /> SYSTEMS</div>
+                        <div className="text-[7px] text-[#1a1a1a]/20 tracking-widest">40.7°N 74.0°W</div>
+                    </div>
+                </div>
+
+                {/* END PHASE (Artistic Result) */}
+                <div className="s__overlay-end flex justify-between items-end uppercase font-mono text-[10px] tracking-[0.2em] text-[#1a1a1a]/40">
+                    <div className="space-y-4">
+                        <div className="font-brier normal-case text-3xl md:text-5xl lowercase italic tracking-tighter text-[#1a1a1a]/80">Stay Engineered</div>
+                        <div className="text-[8px] tracking-[0.3em] opacity-30 flex items-center gap-2">
+                            <span className="w-8 h-[1px] bg-[#1a1a1a]/20" />
+                            TRANSMITTING VIBES
+                        </div>
+                    </div>
+                    <div className="text-right flex flex-col items-end gap-4">
+                        <div className="w-24 h-24 rounded-full border border-[#1a1a1a]/5 hidden md:block" /> {/* Illustration Slot (End) */}
+                        <div className="leading-relaxed text-[7px] md:text-[8px] opacity-60">
+                            CORE: NEXT.JS 14<br />
+                            ENV: DEPLOYED<br />
+                            FREQ: 144.02HZ
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            {/* Mirrored Engineering Wave (Bottom) */}
+            <div className="absolute bottom-[-99px] left-0 w-full h-[100px] z-[5] pointer-events-none rotate-180">
+                <svg viewBox="0 0 1440 100" preserveAspectRatio="none" className="w-full h-full translate-y-[2px]">
+                    <path
+                        d="M0 100 C 360 100, 350 0, 720 0 C 1050 0, 1100 100, 1440 100 V 100 H 0 Z"
+                        fill="#C8B8A0"
+                    />
+                </svg>
             </div>
         </section>
     )
