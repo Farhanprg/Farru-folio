@@ -1,5 +1,6 @@
 import Preloader from "@/components/Preloader";
 import HeroSection from "@/components/HeroSection";
+import AboutSection from "@/components/AboutSection";
 import WorkSection from "@/components/WorkSection";
 import TextReveal from "@/components/TextReveal";
 
@@ -11,8 +12,11 @@ export default function Home() {
       {/* Cinematic Intro (With Marquee Background) */}
       <HeroSection />
 
-      {/* Spacer - Visual breathing room (reduced to 80vh) */}
-      <div className="relative z-20 h-[80vh] bg-[#0a0a0a]" />
+      {/* About / Bio Section with Floating Portrait */}
+      <AboutSection />
+
+      {/* Spacer - Visual breathing room (reduced to 20vh) */}
+      <div className="relative z-20 h-[20vh] bg-[#0a0a0a]" />
 
       {/* Text Image Reveal Effect - Exact Port from reference */}
       <TextReveal />

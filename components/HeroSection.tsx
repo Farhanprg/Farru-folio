@@ -21,15 +21,17 @@ export default function HeroSection() {
         offset: ["start start", "end end"],
     })
 
+    // Make the framer-motion spring much smoother and softer
     const smoothProgress = useSpring(scrollYProgress, {
-        stiffness: 100,
-        damping: 30,
+        stiffness: 50,  // Lower stiffness makes it smoother
+        damping: 20,    // Lower damping for more follow-through
+        mass: 0.5,      // Lighter mass for less drag
         restDelta: 0.001,
     })
 
     // Phase 1: Portrait Scaling (Stays centered, no Y movement)
-    // Slower scale out: stays larger for longer
-    const scale = useTransform(smoothProgress, [0, 0.5], [1, 0.7])
+    // Slower scale out: stays larger for longer, but shrinks more heavily now
+    const scale = useTransform(smoothProgress, [0, 0.4], [1, 0.45])
 
     // Dynamic Border Radius
     const borderRadius = useTransform(smoothProgress, [0.1, 0.5], ["0px", "60px"])
@@ -47,7 +49,7 @@ export default function HeroSection() {
 
     return (
         // Increased height to 500vh to give more "scroll time" (2-3 slides worth)
-        <section ref={containerRef} className="relative h-[500vh] bg-[#0a0a0a] z-0">
+        <section ref={containerRef} className="relative h-[400vh] bg-[#0a0a0a] z-0">
             <div className="sticky top-0 h-screen w-full overflow-hidden flex items-center justify-center">
 
                 {/* BACKGROUND LAYER: The Marquee (Behind Portrait) */}
@@ -62,7 +64,7 @@ export default function HeroSection() {
 
                 {/* FOREGROUND LAYER: The 3D Portrait */}
                 <motion.div
-                    className="absolute inset-0 z-10 overflow-hidden flex items-center justify-center"
+                    className="absolute inset-0 z-10 overflow-hidden flex items-center justify-center pointer-events-auto"
                     style={{
                         scale,
                         borderRadius
@@ -96,16 +98,6 @@ export default function HeroSection() {
                         )}
                     </motion.div>
                 </div>
-
-                {/* Bottom Right Content - Removed as requested */}
-                {/* <div className="absolute bottom-12 right-4 md:bottom-24 md:right-12 z-20">
-                    <motion.div
-                        style={{ opacity: uiOpacity, y: bottomTextY }}
-                        className="flex flex-col items-end group cursor-pointer"
-                    >
-                        // Content removed
-                    </motion.div>
-                </div> */}
 
             </div>
         </section>
