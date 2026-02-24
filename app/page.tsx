@@ -22,7 +22,12 @@ export default function Home() {
       <TextReveal />
 
       {/* WORK Section - Phase 1: Static Foundation */}
-      <WorkSection />
+      <div className="relative z-10">
+        <WorkSection />
+      </div>
+
+      {/* Empty space for testing/development - sits seamlessly under the curve */}
+      <div className="w-full h-screen bg-[#0a0a0a] relative z-0" id="dev-workspace" />
 
     </main>
   );
