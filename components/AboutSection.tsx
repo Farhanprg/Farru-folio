@@ -32,7 +32,7 @@ export default function AboutSection() {
                 className="absolute top-32 left-4 md:left-12 lg:left-24 z-0 pointer-events-none"
             >
                 <h1 className="text-[25vw] md:text-[18vw] font-brier leading-[0.8] whitespace-nowrap text-white/5 uppercase tracking-tighter mix-blend-overlay">
-                    HI, I'M <br />   FARRU
+                    HI, I'M <br /> FARRU
                 </h1>
             </motion.div>
 
@@ -42,10 +42,10 @@ export default function AboutSection() {
                 className="relative z-10 w-[280px] h-[380px] md:w-[350px] md:h-[480px] lg:w-[450px] lg:h-[600px] mt-[25vh] shrink-0 pointer-events-none rounded-3xl overflow-hidden border border-white/5 bg-[#111] shadow-2xl"
             >
                 <Image
-                    src="/portrait-new.jpg"
+                    src="/portrait.png"
                     alt="Farru Portrait"
                     fill
-                    className="object-cover object-center translate-y-8 scale-110 drop-shadow-2xl opacity-90"
+                    className="object-cover object-center translate-y-8 scale-110 drop-shadow-2xl opacity-90 grayscale contrast-125 mix-blend-lighten"
                 />
             </motion.div>
 
