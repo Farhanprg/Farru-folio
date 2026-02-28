@@ -2,6 +2,7 @@
 
 import { useRef } from "react"
 import { motion, useScroll, useTransform } from "framer-motion"
+import InteractiveReveal from "./InteractiveReveal"
 import Image from "next/image"
 
 export default function AboutSection() {
@@ -39,21 +40,24 @@ export default function AboutSection() {
             {/* PORTRAIT IMAGE - Middle Center Floating & Tilted */}
             <motion.div
                 style={{ y: yImage, rotateZ: rotateImage }}
-                className="relative z-10 w-[280px] h-[380px] md:w-[350px] md:h-[480px] lg:w-[450px] lg:h-[600px] mt-[25vh] shrink-0 pointer-events-none rounded-3xl overflow-hidden border border-white/5 bg-[#111] shadow-2xl"
+                className="relative z-10 w-[280px] h-[380px] md:w-[350px] md:h-[480px] lg:w-[450px] lg:h-[600px] mt-[25vh] shrink-0 rounded-3xl"
             >
-                <Image
-                    src="/071dd2c3.jpg"
-                    alt="Farru Portrait"
-                    fill
-                    className="object-cover object-center translate-y-8 scale-110 drop-shadow-2xl opacity-90"
-                />
+                <div
+                    className="w-full h-full translate-y-8 scale-110"
+                    style={{ filter: "drop-shadow(0px 15px 25px rgba(0,0,0,0.6))" }}
+                >
+                    <InteractiveReveal
+                        topSrc="/071dd2c3.jpg"
+                        bottomSrc="/images/1st-Photoroom-up.jpg"
+                    />
+                </div>
             </motion.div>
 
             {/* BIO TEXT - Bottom Right */}
-            <div className="w-full flex justify-end px-6 md:px-16 lg:px-24 relative z-20 mt-12 md:-mt-32">
+            <div className="w-full flex justify-end px-6 md:px-16 lg:px-24 relative z-20 mt-12 md:-mt-32 pointer-events-none">
                 <motion.div
                     style={{ y: yText }}
-                    className="max-w-md lg:max-w-xl flex flex-col gap-6 md:gap-8 text-right bg-[#0a0a0a]/40 p-6 md:p-8 rounded-3xl backdrop-blur-md border border-white/5 shadow-2xl"
+                    className="max-w-md lg:max-w-xl flex flex-col gap-6 md:gap-8 text-right bg-[#0a0a0a]/40 p-6 md:p-8 rounded-3xl backdrop-blur-md border border-white/5 shadow-2xl pointer-events-auto"
                 >
                     <p className="text-white/90 text-2xl md:text-3xl lg:text-4xl font-light leading-tight tracking-wide">
                         A developer with a <br /><span className="font-brier italic text-[#D1FF1C] tracking-normal">creative mind</span>,<br /> obsessed with engineering unforgettable digital <span className="font-brier text-[#D1FF1C] tracking-normal px-1">"WOW"</span> moments.

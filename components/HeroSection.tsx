@@ -86,15 +86,44 @@ export default function HeroSection() {
                                     transition={{ duration: 1, ease: [0, 0.55, 0.45, 1] }}
                                     className="text-white/40 text-[10px] md:text-xs uppercase tracking-[0.5em] font-medium block mb-2"
                                 >
-                                    Welcome to my
+                                    myself
                                 </motion.span>
-                                <SplitText
-                                    text="PORTFOLIO"
-                                    className="text-white text-6xl md:text-8xl lg:text-9xl font-brier leading-none uppercase tracking-tighter"
-                                    delay={40}
-                                    tag="h2"
-                                />
+                                <div className="flex flex-col gap-0 md:-gap-2">
+                                    <SplitText
+                                        text="MOHAMMED"
+                                        className="text-white text-[12vw] md:text-[8vw] lg:text-[7vw] font-brier leading-[0.85] uppercase tracking-tighter"
+                                        delay={40}
+                                        tag="h2"
+                                    />
+                                    <SplitText
+                                        text="FARHAN"
+                                        className="text-white text-[12vw] md:text-[8vw] lg:text-[7vw] font-brier leading-[0.85] uppercase tracking-tighter sm:ml-0 md:ml-12 lg:ml-16"
+                                        delay={40}
+                                        tag="h2"
+                                    />
+                                </div>
                             </>
+                        )}
+                    </motion.div>
+                </div>
+
+                {/* ARABIC NAME LAYER (Right Side) */}
+                <div className="absolute top-8 right-4 md:top-12 md:right-8 z-20 pointer-events-none text-right">
+                    <motion.div style={{ opacity: uiOpacity, y: topTextY }}>
+                        {isLoaded && (
+                            <motion.div
+                                initial={{ opacity: 0, x: 10 }}
+                                animate={{ opacity: 1, x: 0 }}
+                                transition={{ duration: 1, delay: 0.5, ease: [0, 0.55, 0.45, 1] }}
+                                className="flex flex-col items-end"
+                            >
+                                <span className="text-[#D1FF1C] text-sm md:text-base tracking-[0.2em] font-medium uppercase mb-2 opacity-60">
+                                    اسم
+                                </span>
+                                <h2 className="text-white/30 text-4xl md:text-5xl lg:text-7xl font-light tracking-wide leading-none" dir="rtl">
+                                    محمد فرحان
+                                </h2>
+                            </motion.div>
                         )}
                     </motion.div>
                 </div>
