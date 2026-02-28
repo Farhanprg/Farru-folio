@@ -42,10 +42,10 @@ export default function AboutSection() {
                 className="relative z-10 w-[280px] h-[380px] md:w-[350px] md:h-[480px] lg:w-[450px] lg:h-[600px] mt-[25vh] shrink-0 pointer-events-none rounded-3xl overflow-hidden border border-white/5 bg-[#111] shadow-2xl"
             >
                 <Image
-                    src="/portrait.png"
+                    src="/071dd2c3.jpg"
                     alt="Farru Portrait"
                     fill
-                    className="object-cover object-center translate-y-8 scale-110 drop-shadow-2xl opacity-90 grayscale contrast-125 mix-blend-lighten"
+                    className="object-cover object-center translate-y-8 scale-110 drop-shadow-2xl opacity-90"
                 />
             </motion.div>
 
