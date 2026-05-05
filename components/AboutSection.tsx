@@ -14,8 +14,12 @@ export default function AboutSection() {
         offset: ["start end", "end start"]
     })
 
-    // 1. HUGE BACKGROUND TEXT - Slowest (Starts slightly down, moves up gently)
-    const yBackground = useTransform(scrollYProgress, [0, 1], ["20%", "-10%"])
+    // 1. HUGE BACKGROUND TEXT - Slow Y Movement
+    const yBackground = useTransform(scrollYProgress, [0, 1], ["0%", "30%"])
+
+    // Horizontal tracking for the text (Left to Right, Right to Left)
+    const xTopText = useTransform(scrollYProgress, [0, 1], ["-100%", "20%"]) // Slides from Left -> Right
+    const xBottomText = useTransform(scrollYProgress, [0, 1], ["100%", "-20%"]) // Slides from Right -> Left
 
     // 2. BIO TEXT - Medium Speed (Starts lower, moves up faster)
     const yText = useTransform(scrollYProgress, [0, 1], ["60%", "-20%"])
@@ -27,15 +31,20 @@ export default function AboutSection() {
     return (
         <section ref={containerRef} className="relative w-full min-h-[160vh] bg-[#0a0a0a] overflow-hidden flex flex-col items-center py-32">
 
-            {/* HUGE BACKGROUND TEXT - Top Left */}
-            <motion.div
-                style={{ y: yBackground }}
-                className="absolute top-32 left-4 md:left-12 lg:left-24 z-0 pointer-events-none"
-            >
-                <h1 className="text-[25vw] md:text-[18vw] font-brier leading-[0.8] whitespace-nowrap text-white/5 uppercase tracking-tighter mix-blend-overlay">
-                    HI, I'M <br /> FARRU
-                </h1>
-            </motion.div>
+            {/* HUGE BACKGROUND TEXT - Scroll tracking (Parallax Horizontal & Vertical) */}
+            <div className="absolute top-0 left-0 w-full h-[100vh] z-0 pointer-events-none overflow-hidden flex flex-col items-center pt-24 md:pt-32">
+                <motion.div
+                    style={{ y: yBackground }}
+                    className="w-full flex flex-col items-center justify-center opacity-70 px-4"
+                >
+                    <motion.h1 style={{ x: xTopText }} className="text-[25vw] md:text-[20vw] font-brier leading-[0.75] whitespace-nowrap text-white uppercase tracking-tighter">
+                        HI, I'M
+                    </motion.h1>
+                    <motion.h1 style={{ x: xBottomText }} className="text-[25vw] md:text-[20vw] font-brier leading-[0.75] whitespace-nowrap text-white uppercase tracking-tighter sm:ml-0 md:ml-32">
+                        FARRU
+                    </motion.h1>
+                </motion.div>
+            </div>
 
             {/* PORTRAIT IMAGE - Middle Center Floating & Tilted */}
             <motion.div
