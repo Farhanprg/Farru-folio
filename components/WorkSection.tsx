@@ -15,31 +15,16 @@ if (typeof window !== "undefined") {
     gsap.registerPlugin(ScrollTrigger, SlowMo)
 }
 
-// Projects data - needs many cards for the overlapping effect (like reference has ~45)
-const baseProjects = [
+// Projects data - reduced to 7 cards for a tighter section
+const works: { caption: string; site: string }[] = [
     { caption: "COMPUTECH - Main", site: "https://computech-foundation-a894d.web.app" },
-    { caption: "Dummy Project 1", site: "#" },
-    { caption: "Dummy Project 2", site: "#" },
-    { caption: "Dummy Project 3", site: "#" },
-    { caption: "Dummy Project 4", site: "#" },
-    { caption: "Dummy Project 5", site: "#" },
-    { caption: "Dummy Project 6", site: "#" },
-    { caption: "Dummy Project 7", site: "#" },
-    { caption: "Dummy Project 8", site: "#" },
-    { caption: "Dummy Project 9", site: "#" },
-    { caption: "Dummy Project 10", site: "#" },
+    { caption: "Project 2", site: "#" },
+    { caption: "Project 3", site: "#" },
+    { caption: "Project 4", site: "#" },
+    { caption: "Project 5", site: "#" },
+    { caption: "Project 6", site: "#" },
+    { caption: "Project 7", site: "#" },
 ]
-
-// Create multiple copies like reference (14 projects × 4 videos = ~45 cards)
-const works: { caption: string; site: string }[] = []
-baseProjects.forEach((project, i) => {
-    for (let j = 0; j < 4; j++) {
-        works.push({
-            caption: `${project.caption} - Video ${j + 1}`,
-            site: project.site
-        })
-    }
-})
 
 export default function WorkSection() {
     const sectionRef = useRef<HTMLElement>(null)
