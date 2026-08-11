@@ -7,7 +7,7 @@ import AboutImage from "./AboutImage"
 import AboutSubHeader from "./AboutSubHeader"
 
 export default function AboutSection() {
-    const containerRef = useRef<HTMLDivElement>(null)
+    const containerRef = useRef<HTMLElement>(null)
 
     return (
         <section 
