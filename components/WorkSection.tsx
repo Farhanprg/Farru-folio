@@ -15,15 +15,15 @@ if (typeof window !== "undefined") {
     gsap.registerPlugin(ScrollTrigger, SlowMo)
 }
 
-// Projects data - reduced to 7 cards for a tighter section
-const works: { caption: string; site: string }[] = [
-    { caption: "COMPUTECH - Main", site: "https://computech-foundation-a894d.web.app" },
-    { caption: "Project 2", site: "#" },
-    { caption: "Project 3", site: "#" },
-    { caption: "Project 4", site: "#" },
-    { caption: "Project 5", site: "#" },
-    { caption: "Project 6", site: "#" },
-    { caption: "Project 7", site: "#" },
+// Projects data - Personal Projects
+const works: { caption: string; description: string; site: string }[] = [
+    { caption: "Leads Management CRM", description: "Lead generation and management platform.", site: "https://leads.ambrits.com" },
+    { caption: "CompuFoundation", description: "Organizational foundation web portal.", site: "https://compufoundation260.com" },
+    { caption: "Admin Assistant", description: "Agentic workflow automation system.", site: "https://github.com/Farhan-source-lab/Admin-Assistant" },
+    { caption: "Marketing Sim", description: "Interactive marketing simulation application.", site: "https://github.com/Farhan-source-lab/marketing_sim-00256" },
+    { caption: "Pixel Stitch Cast", description: "Creative encryptionised workflow automation System.", site: "https://github.com/Farhan-source-lab/pixel-stitch-cast" },
+    { caption: "BEE Sim", description: "Business Environment Emulator system.", site: "https://github.com/Farhan-source-lab/BEE_sim" },
+    { caption: "Awaara AI", description: "Intelligent personal AI companion assistant.", site: "https://github.com/Farhan-source-lab/awaaraai-your-ai-companion" },
 ]
 
 export default function WorkSection() {
@@ -322,6 +322,7 @@ export default function WorkSection() {
                                 key={i}
                                 ref={(el) => { workRefs.current[i] = el }}
                                 caption={work.caption}
+                                description={work.description}
                                 site={work.site}
                                 index={i}
                                 total={works.length}
@@ -395,7 +396,7 @@ export default function WorkSection() {
 }
 
 // Work Card Component
-interface WorkCardProps { caption: string; site: string; index: number; total: number }
+interface WorkCardProps { caption: string; description: string; site: string; index: number; total: number }
 
 // Pre-computed keys to avoid hydration mismatch
 const precomputedKeys = [
@@ -403,12 +404,12 @@ const precomputedKeys = [
     "U1V2", "W3X4", "Y5Z6", "A7B8", "C9D0", "E1F2", "G3H4", "I5J6", "K7L8", "M9N0"
 ]
 
-const WorkCard = forwardRef<HTMLDivElement, WorkCardProps>(({ caption, site, index, total }, ref) => {
+const WorkCard = forwardRef<HTMLDivElement, WorkCardProps>(({ caption, description, site, index, total }, ref) => {
     return (
         <div ref={ref} className="s__scene__work">
-            <a href={site} target="_blank" rel="noopener noreferrer" className="a__link">
-                {/* Image only - no caption card */}
-                <div className="a__video">
+            <a href={site} target="_blank" rel="noopener noreferrer" className="!flex items-center gap-2 md:gap-3 no-underline w-max">
+                {/* Left: Image */}
+                <div className="a__video shrink-0 overflow-hidden">
                     <img
                         src="/images/hero-reveal.png"
                         alt={caption}
@@ -418,6 +419,15 @@ const WorkCard = forwardRef<HTMLDivElement, WorkCardProps>(({ caption, site, ind
                             objectFit: 'cover',
                         }}
                     />
+                </div>
+
+                {/* Right: Tooltip-style Description Box */}
+                <div className="relative shrink-0 bg-[#1a1a1a]/95 text-[#C8B8A0] px-4 py-3 md:px-5 md:py-4 rounded-lg border border-[#C8B8A0]/20 shadow-2xl w-[160px] md:w-[220px] text-left backdrop-blur-md">
+                    {/* Left Arrow (Top-Left) using rotated square */}
+                    <div className="absolute left-[-5px] top-[16px] w-[8px] h-[8px] bg-[#1a1a1a] border-l border-t border-[#C8B8A0]/20 -rotate-45" />
+
+                    <h3 className="font-bold text-[11px] md:text-[13px] uppercase tracking-widest mb-1.5 text-white/90 leading-tight">{caption}</h3>
+                    <p className="text-[10px] md:text-[11px] opacity-70 leading-relaxed font-sans">{description}</p>
                 </div>
             </a>
         </div>

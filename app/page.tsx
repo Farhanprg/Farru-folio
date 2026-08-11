@@ -3,6 +3,8 @@ import HeroSection from "@/components/HeroSection";
 import AboutSection from "@/components/AboutSection";
 import WorkSection from "@/components/WorkSection";
 import TextReveal from "@/components/TextReveal";
+import HorizontalScroll from "@/components/HorizontalScroll";
+import ContactSection from "@/components/ContactSection";
 
 export default function Home() {
   return (
@@ -26,8 +28,14 @@ export default function Home() {
         <WorkSection />
       </div>
 
+      {/* Horizontal Scroll Message */}
+      <HorizontalScroll />
+
+      {/* Let's Talk Section */}
+      <ContactSection />
+
       {/* Empty space for testing/development - sits seamlessly under the curve */}
-      <div className="w-full h-screen bg-[#0a0a0a] relative z-0" id="dev-workspace" />
+      <div className="w-full h-[5vh] bg-[#0a0a0a] relative z-0" id="dev-workspace" />
 
     </main>
   );
