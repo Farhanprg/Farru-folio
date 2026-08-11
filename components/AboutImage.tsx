@@ -4,7 +4,7 @@ import React, { useRef } from "react"
 import { motion, useScroll, useTransform } from "framer-motion"
 import Image from "next/image"
 
-export default function AboutImage({ targetRef }: { targetRef: React.RefObject<HTMLElement> }) {
+export default function AboutImage({ targetRef }: { targetRef: React.RefObject<HTMLElement | null> }) {
     const ref = useRef(null)
     const { scrollYProgress } = useScroll({
         target: targetRef,

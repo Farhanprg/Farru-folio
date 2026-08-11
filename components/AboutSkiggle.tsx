@@ -3,7 +3,7 @@
 import React, { useEffect, useRef, useState } from "react"
 import { motion, useScroll, useTransform, useSpring } from "framer-motion"
 
-export default function AboutSkiggle({ targetRef }: { targetRef: React.RefObject<HTMLElement> }) {
+export default function AboutSkiggle({ targetRef }: { targetRef: React.RefObject<HTMLElement | null> }) {
     const pathRef = useRef<SVGPathElement>(null)
     const [pathLength, setPathLength] = useState(4291)
 

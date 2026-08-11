@@ -21,6 +21,8 @@ export default function ContactSection() {
         if (typeof window === "undefined") return
         gsap.registerPlugin(ScrollTrigger)
 
+        if (!sectionRef.current) return
+
         const ctx = gsap.context(() => {
             const eyebrowChars = eyebrowRef.current?.querySelectorAll(".ct-char") || []
             const headlineChars = headlineRef.current?.querySelectorAll(".ct-char") || []
